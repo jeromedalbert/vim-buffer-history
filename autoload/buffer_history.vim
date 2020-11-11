@@ -21,6 +21,7 @@ function! buffer_history#add(bufnr) abort "{{{1
 endfunction
 
 function! buffer_history#remove(bufnr) "{{{1
+  if !exists('w:buffer_history') | return | endif
   call filter(w:buffer_history, 'v:val !=# a:bufnr')
   if w:buffer_history_index >= len(w:buffer_history)
     let w:buffer_history_index = len(w:buffer_history) - 1
